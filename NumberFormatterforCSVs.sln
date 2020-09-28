@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberFormatterForCSVs", "Number Formatter for CSVs\NumberFormatterForCSVs.csproj", "{33ED5FE0-EE61-4073-8129-93209669BEF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests_NumberFormatterForCSVs", "UnitTests_NumberFormatterForCSVs\UnitTests_NumberFormatterForCSVs.csproj", "{D34327A7-46EF-4281-911C-B5E7BD27A0A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33ED5FE0-EE61-4073-8129-93209669BEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33ED5FE0-EE61-4073-8129-93209669BEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33ED5FE0-EE61-4073-8129-93209669BEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33ED5FE0-EE61-4073-8129-93209669BEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34327A7-46EF-4281-911C-B5E7BD27A0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34327A7-46EF-4281-911C-B5E7BD27A0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34327A7-46EF-4281-911C-B5E7BD27A0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34327A7-46EF-4281-911C-B5E7BD27A0A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17AAB9A2-7636-4B6B-9871-48E8E8B61701}
+	EndGlobalSection
+EndGlobal
