@@ -21,11 +21,11 @@ namespace NumberFormatterForCSVs
         /// <param name="filePath"></param>
         /// <param name="destPath"></param>
         /// <returns></returns>
-        public string FormatTextFile(string filePath, string destPath)
+        public async Task<string> FormatTextFile(string filePath, string destPath)
         {
             try
             {
-                return CheckFile(filePath) ? FormatData(filePath, destPath).Result 
+                return File.Exists(filePath) ? await FormatData(filePath, destPath) 
                     : throw new FileNotFoundException();
             }
             catch (Exception e)
@@ -74,7 +74,6 @@ namespace NumberFormatterForCSVs
                 using (BufferedStream bs = new BufferedStream(fs))
                 using (TextWriter tw = new StreamWriter(bs))
                 {
-
                     fs.Seek(0, SeekOrigin.End); //Seek is used over append to prevent the file from becoming WriteOnly.
                     await tw.WriteAsync(file + "\n");                   
                 }
@@ -106,15 +105,5 @@ namespace NumberFormatterForCSVs
             }
             return isComplete;           
         }
-        /// <summary>
-        /// Checks to see if file exists at source.
-        /// </summary>
-        /// <param name="srcPath"></param>
-        /// <returns></returns>
-        public bool CheckFile(string srcPath)
-        {
-            return File.Exists(srcPath);
-        }
-    }
-    
+    }   
 }
