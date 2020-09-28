@@ -41,7 +41,7 @@ namespace NumberFormatterForCSVs
                         IFileProcessor csvFormatter = 
                             Factory.InstantiateFileProcessor(Factory.InstantiateNumberFormatter());
                         string[] paths = GetPaths();
-                        string done = csvFormatter.FormatTextFile(paths[0], paths[1]).Result;
+                        string done = csvFormatter.FormatTextFile(paths[0], paths[1]);
                     }
                     catch (Exception e)
                     {

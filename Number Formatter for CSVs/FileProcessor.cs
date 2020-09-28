@@ -16,46 +16,50 @@ namespace NumberFormatterForCSVs
             NumberFormatter = numberFormatter;
         }
         /// <summary>
-        /// Asynchronously reads text from a file and returns it as a string.
+        /// Checks the source file exists before formatting its contents.
         /// </summary>
         /// <param name="filePath"></param>
-        /// <returns>string</returns>
-        public async Task<string> FormatTextFile(string filePath, string destPath)
+        /// <param name="destPath"></param>
+        /// <returns></returns>
+        public string FormatTextFile(string filePath, string destPath)
         {
-            int i = 0;
-            string line = null;            
             try
             {
-                if (File.Exists(filePath))
-                {
-                    using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                    using (BufferedStream bs = new BufferedStream(fs))
-                    using (StreamReader sr = new StreamReader(bs))
-                    {
-                        do
-                        {
-                            line = await sr.ReadLineAsync();
-                            await FormatLineAndSave(sr, line, destPath);
-                            //The following is just to show progress on the console.
-                            i++;
-                            if (i % 1000 == 0)
-                            {
-                                Console.WriteLine($"Formatted {i}");
-                            }
-                        }
-                        while (line != null);
-                    };
-                    return "done";
-                }
-                else
-                {
-                    throw new FileNotFoundException();
-                }
+                return CheckFile(filePath) ? FormatData(filePath, destPath).Result 
+                    : throw new FileNotFoundException();
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+        /// <summary>
+        /// Asynchronously reads text from a file and returns it as a string.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>string</returns>
+        private async Task<string> FormatData(string filePath, string destPath)
+        {
+            int i = 0;
+            string line = null;
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                do
+                {
+                    line = await sr.ReadLineAsync();
+                    await FormatLineAndSave(sr, line, destPath);
+                    //The following is just to show progress on the console.
+                    i++;
+                    if (i % 1000 == 0)
+                    {
+                        Console.WriteLine($"Formatted {i}");
+                    }
+                }
+                while (line != null);
+            };
+            return "done";
         }
         /// <summary>
         ///  Asynchronously reads through a new file and writes the data to the end.
@@ -80,7 +84,7 @@ namespace NumberFormatterForCSVs
             {
                 throw e;
             }            
-        }  
+        }
         /// <summary>
         /// T
         /// </summary>
@@ -100,8 +104,16 @@ namespace NumberFormatterForCSVs
                 await WriteFile(data, destPath);
                 isComplete = true;
             }
-            return isComplete;
-            
+            return isComplete;           
+        }
+        /// <summary>
+        /// Checks to see if file exists at source.
+        /// </summary>
+        /// <param name="srcPath"></param>
+        /// <returns></returns>
+        public bool CheckFile(string srcPath)
+        {
+            return File.Exists(srcPath);
         }
     }
     

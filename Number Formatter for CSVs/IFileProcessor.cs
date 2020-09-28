@@ -8,6 +8,6 @@ namespace NumberFormatterForCSVs
     /// </summary>
     internal interface IFileProcessor
     {
-        Task<string> FormatTextFile(string filePath, string destPath);       
+        string FormatTextFile(string filePath, string destPath);       
     }
 }
